@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Patient List</title>
+<link rel="stylesheet" href="../../static.css/bootstrap.min.css" >
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<a href="/patient/list">Patient List</a>&nbsp;|&nbsp;
+		</div>
+		<div class="col-6 text-right">
+			Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
+			<form th:action="@{/app-logout}" method="POST">
+				<input type="submit" value="Logout"/>
+			</form>
+		</div>
+	</div>
+	<div class="row"><h2>Patient List</h2></div>
+	<div class="row">
+		<a href="/patient/add" class="btn btn-primary btn-sm">Add New</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Prenom</th>
+					<th>Nom</th>
+					<th>Date de naissance</th>
+					<th>Genre</th>
+					<th>Adresse Postale</th>
+					<th>Numéro de téléphone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="patient : ${patientDTO}">
+					<td th:text="${patient.id}"></td>
+					<td th:text="${patient.prenom}"></td>
+					<td th:text="${patient.nom}"></td>
+					<td th:text="${patient.dateDeNaissance}"></td>
+					<td th:text="${patient.genre}"></td>
+					<td th:text="${patient.adressePostale}"></td>
+					<td th:text="${patient.numeroDeTelephone}"></td>
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a> |&nbsp;
+						<a th:href="@{/patient/delete/{id}(id=${patient.id})}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>
