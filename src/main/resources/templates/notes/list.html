@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Notes List</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+		</div>
+		<div class="col-6 text-right">
+			<a href="/">Home</a>&nbsp;|&nbsp;<a href="/patient/list">List of Patients</a>
+		</div>
+	</div>
+	<div class="row"><h2>Notes List</h2></div>
+	<div class="row"> <h3> Patient : <span th:text="${patientDTO.nom} + ' ' + ${patientDTO.prenom}"></span></h3><br/></div>
+	<div class="row"> <h4> Diabet assessment : <span th:text="${riskLEvel}"></span></h4><br/></div>
+	<div class="row">
+		<a th:href="@{/notes/add/{id}(id=${patientId})}" class="btn btn-primary btn-sm">Add New</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>PatientId</th>
+					<th>Practioner's Note</th>
+					<th>Date de création</th>
+					<th>Date de modification</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="notes : ${notesDTO}">
+					<td th:text="${notes.id}"></td>
+					<td th:text="${notes.patientId}"></td>
+					<td th:text="${notes.practicionerNotes}"></td>
+					<td th:text="${notes.dateCreation}"></td>
+					<td th:text="${notes.dateModification}"></td>
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/notes/update/{patientId}/{id}(patientId=${notes.patientId},id=${notes.id})}">Edit</a> |&nbsp;
+						<a th:href="@{/notes/delete/{patientId}/{id}(patientId=${notes.patientId},id=${notes.id})}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>

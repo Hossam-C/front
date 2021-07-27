@@ -23,7 +23,11 @@ public class PatientDTO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDeNaissance;
+
+    @NotNull
+    @NotBlank(message = "Prenom is mandatory")
     private String genre;
+
     private String adressePostale;
     private String numeroDeTelephone;
 

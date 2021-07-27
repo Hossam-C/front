@@ -26,10 +26,10 @@ public class PatientController {
     private PatientService patientService;
 
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String home(Model model){
 
-        return "API Patient";
+        return "home";
     }
 
 

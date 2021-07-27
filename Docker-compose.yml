@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  patient:
+    image:  patient
+    ports:
+      - "1111:1111"
+    restart: on-failure
+  notes:
+    image:  notes
+    ports:
+      - "2222:2222"
+    restart: on-failure
+  risk:
+    image:  risk
+    ports:
+      - "3333:3333"
+    restart: on-failure
+  front:
+    image: front
+    ports:
+      - "8080:8080"
+    restart: on-failure

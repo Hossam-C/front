@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
-@FeignClient(name = "patient" ,  url = "localhost:1111")
+@FeignClient(name = "patient" ,  url = "patient:1111")
 public interface PatientProxy {
 
     @GetMapping(value = "/getPatient/{id}")

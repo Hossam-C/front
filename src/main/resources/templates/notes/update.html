@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Home</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+		</div>
+		<div class="col-6 text-right">
+			<a href="/">Home</a>&nbsp;|&nbsp;<a th:href="@{/notes/list/{id}(id=${patientId})}">Patient's Notes</a>
+		</div>
+	</div>
+	<div class="row">
+		<h2>Update Practicioner's Note</h2>
+	</div>
+
+	<div class="row">
+		<form action="#" th:action="@{/notes/update/{patientId}/{id}(patientId=${notesDTO.patientId},id=${notesDTO.id})}" th:object="${notesDTO}" method="post" class="form-horizontal" style="width: 100%">
+
+			<div class="form-group">
+				<label for="practicionerNotes" class="col-sm-2 control-label">Practicioner's Notes</label>
+				<div class="col-sm-auto-100">
+					<!--<input type="text" th:field="*{practicionerNotes}" id="practicionerNotes" placeholder="Notes" class="col-4">-->
+					<textarea th:text="*{practicionerNotes}" class="form-control" id="practicionerNotes" name="practicionerNotes" rows="12" placeholder="Practicioner's Notes..."/></textarea>
+					<p class="text-danger" th:if="${#fields.hasErrors('practicionerNotes')}" th:errors="*{practicionerNotes}"></p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input type="hidden" th:field="*{id}">
+					<a class="btn btn-danger btn-sm" th:href="@{/notes/list/{id}(id=${patientId})}">Cancel</a>
+					<input class="btn btn-primary btn-sm" type="submit" value="Update Notes">
+				</div>
+			</div>
+		</form>
+	</div>
+
+</div>
+</body>
+</html>
